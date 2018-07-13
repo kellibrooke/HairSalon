@@ -16,7 +16,9 @@ namespace HairSalon.Controllers
         [HttpPost("/stylist-list")]
         public ActionResult UpdateList()
         {
-            Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
+            string stylistName = Request.Form["stylist-name"];
+            Stylist newStylist = new Stylist(stylistName);
+            newStylist.SaveStylist();
             List<Stylist> allStylists = Stylist.GetAllStylists();
             return View("Index", allStylists);
         }

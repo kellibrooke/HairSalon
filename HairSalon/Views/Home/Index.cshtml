@@ -3,7 +3,6 @@
 }
 
   <div class='container'>
-    <h1>All Stylists</h1>
     <div class="well">
       <h3>Add A New Stylist</h3>
       <form action="/stylist-list" method="post">
@@ -15,12 +14,16 @@
       </form>
     </div>
 
-    @foreach (var stylist in Model)
-    {
-        <div class="row">
-          <div class="col-12-sm">
-            @stylist.GetName();
+    <div class="well">
+      <h1>All Stylists</h1>
+      @foreach (var stylist in Model)
+      {
+          <div class="row">
+            <div class="col-12-sm">
+              @stylist.GetName()
+            </div>
           </div>
-        </div>
-    }
+      }
+    </div>
+
   </div>
