@@ -6,9 +6,9 @@
   <div class="col-sm-6">
     <div class="well">
       <h3>Get Existing Client Information</h3>
-      <form action="/client-info" method="post">
+      <form action="/select-client" method="post">
         <div class="form-group">
-          <label for="stylist-info-select">Select A Stylist</label>
+          <label for="stylist-select">Select A Stylist</label>
           <select class="form-control form-control-sm" name="stylist-info-select">
             @foreach (var stylist in Model)
             {
@@ -30,7 +30,7 @@
           <label for="client-name">Client Name</label>
           <input type="text" class="form-control" id="client-name" name="client-name">
         </div>
-        <label for="stylist-select">Select A Stylist</label>
+        <label for="stylist-assign-select">Select A Stylist</label>
         <select class="form-control form-control-sm" name="stylist-select">
           @foreach (var stylist in Model)
           {
