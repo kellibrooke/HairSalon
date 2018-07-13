@@ -35,10 +35,12 @@ namespace HairSalon.Controllers
 
         }
 
-        // [HttpPost("/client-info")]
-        // public ActionResult ClientInfo()
-        // {
-        //
-        // }
+        [HttpPost("/client-info")]
+        public ActionResult ClientInfo()
+        {
+            int clientId = int.Parse(Request.Form["stylist-select"]);
+            Client selectedClient = Client.FindClient(clientId);
+            return View(selectedClient);
+        }
     }
 }

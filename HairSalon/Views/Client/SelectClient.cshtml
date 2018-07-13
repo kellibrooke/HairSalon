@@ -7,7 +7,7 @@
   <form action="/client-info" method="post">
     <div class="form-group">
       <label for="stylist-select">Select A Client</label>
-      <select class="form-control form-control-sm" name="stylist-info-select">
+      <select class="form-control form-control-sm" name="stylist-select">
         @foreach (var client in Model)
         {
             <option value = "@client.GetId()">
