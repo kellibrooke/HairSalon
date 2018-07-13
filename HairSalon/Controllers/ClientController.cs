@@ -4,15 +4,16 @@ using System.Collections.Generic;
 
 namespace HairSalon.Controllers
 {
-    public class HomeController : Controller
+    public class ClientController : Controller
     {
-        [HttpPost("/clients")]
-        public ActionResult ClientHome()
+        [HttpGet("/clients")]
+        public ActionResult Index()
         {
             List<Stylist> stylistList = Stylist.GetAllStylists();
             return View(stylistList);
         }
-        [HttpPost("/client-interaction")]
+
+        [HttpPost("/clients")]
         public ActionResult CreateClient()
         {
             string clientName = Request.Form["client-name"];
@@ -27,17 +28,17 @@ namespace HairSalon.Controllers
         [HttpPost("/select-client")]
         public ActionResult SelectClient()
         {
-            int stylistId = int.Parse(Request.Form["stylist-select"]);
-            Stylist selectedStylist = FindStylist(stylistId);
+            int stylistId = int.Parse(Request.Form["stylist-info-select"]);
+            Stylist selectedStylist = Stylist.FindStylist(stylistId);
             List<Client> selectedClientList = selectedStylist.GetClientList();
             return View(selectedClientList);
 
         }
 
-        [HttpPost("/client-info")]
-        public ActionResult ClientInfo()
-        {
-
-        }
+        // [HttpPost("/client-info")]
+        // public ActionResult ClientInfo()
+        // {
+        //
+        // }
     }
 }

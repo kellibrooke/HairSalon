@@ -8,7 +8,7 @@
       <h3>Get Existing Client Information</h3>
       <form action="/select-client" method="post">
         <div class="form-group">
-          <label for="stylist-select">Select A Stylist</label>
+          <label for="stylist-info-select">Select A Stylist</label>
           <select class="form-control form-control-sm" name="stylist-info-select">
             @foreach (var stylist in Model)
             {
@@ -31,7 +31,7 @@
           <input type="text" class="form-control" id="client-name" name="client-name">
         </div>
         <label for="stylist-assign-select">Select A Stylist</label>
-        <select class="form-control form-control-sm" name="stylist-select">
+        <select class="form-control form-control-sm" name="stylist-assign-select">
           @foreach (var stylist in Model)
           {
               <option value = "@stylist.GetId()">
