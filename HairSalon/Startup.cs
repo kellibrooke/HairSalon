@@ -9,7 +9,7 @@ namespace HairSalon
     // update DbNameHere with correct db name
     public static class DBConfiguration
     {
-        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=DbNameHere;";
+        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=kelli_mccloskey;";
     }
 
     public class Startup

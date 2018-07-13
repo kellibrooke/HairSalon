@@ -3,5 +3,24 @@
 }
 
   <div class='container'>
-    <h1>Sample index page</h1>
+    <h1>All Stylists</h1>
+    <div class="well">
+      <h3>Add A New Stylist</h3>
+      <form action="/stylist-list" method="post">
+        <div class="form-group">
+          <label for="stylist-name">Stylist Name</label>
+          <input type="text" class="form-control" id="stylist-name" name="stylist-name">
+        </div>
+        <button class="btn btn-info" type="submit">Add Stylist</button>
+      </form>
+    </div>
+
+    @foreach (var stylist in Model)
+    {
+        <div class="row">
+          <div class="col-12-sm">
+            @stylist.GetName();
+          </div>
+        </div>
+    }
   </div>

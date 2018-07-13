@@ -2,7 +2,7 @@
 
 #### Epicodus C# exercise, July 13, 2018
 
-#### By Kelli
+#### By Kelli McCloskey
 
 ## Description
 

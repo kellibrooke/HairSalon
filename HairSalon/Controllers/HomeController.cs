@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using System.Collections.Generic;
 
 namespace HairSalon.Controllers
 {
@@ -8,7 +9,16 @@ namespace HairSalon.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            return View();
+            List<Stylist> allStylists = Stylist.GetAllStylists();
+            return View(allStylists);
+        }
+
+        [HttpPost("/stylist-list")]
+        public ActionResult UpdateList()
+        {
+            Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
+            List<Stylist> allStylists = Stylist.GetAllStylists();
+            return View("Index", allStylists);
         }
     }
 }
