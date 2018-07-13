@@ -2,28 +2,8 @@
   Layout = "_Layout";
 }
 
-  <div class='container'>
-    <div class="well">
-      <h3>Add A New Stylist</h3>
-      <form action="/stylist-list" method="post">
-        <div class="form-group">
-          <label for="stylist-name">Stylist Name</label>
-          <input type="text" class="form-control" id="stylist-name" name="stylist-name">
-        </div>
-        <button class="btn btn-info" type="submit">Add Stylist</button>
-      </form>
-    </div>
+<h1>Welcome To The Salon</h1>
+<p>Are you looking to searching for/adding clients or stylists?</p>
 
-    <div class="well">
-      <h1>All Stylists</h1>
-      @foreach (var stylist in Model)
-      {
-          <div class="row">
-            <div class="col-12-sm">
-              @stylist.GetName(), @stylist.GetId()
-            </div>
-          </div>
-      }
-    </div>
-
-  </div>
+<a href="/stylists">Stylists</a>
+<a href="/clients">Clients</a>

@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Details About @Model.GetName()</h1>
+<p>Name: @Model.GetName()</p>
+<p>Clients: </p>
+@foreach (var client in Model.GetClientList())
+{
+    <li>@client.GetName()</li>
+}

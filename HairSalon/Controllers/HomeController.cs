@@ -9,18 +9,7 @@ namespace HairSalon.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            List<Stylist> allStylists = Stylist.GetAllStylists();
-            return View(allStylists);
-        }
-
-        [HttpPost("/stylist-list")]
-        public ActionResult UpdateList()
-        {
-            string stylistName = Request.Form["stylist-name"];
-            Stylist newStylist = new Stylist(stylistName);
-            newStylist.SaveStylist();
-            List<Stylist> allStylists = Stylist.GetAllStylists();
-            return View("Index", allStylists);
+            return View();
         }
     }
 }
