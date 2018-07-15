@@ -18,7 +18,7 @@ namespace HairSalon.Controllers
         {
             string clientName = Request.Form["client-name"];
             int clientStylistId = int.Parse(Request.Form["stylist-assign-select"]);
-            Client newClient = new Client(clientName, clientStylistId);
+            Client newClient = new Client(clientName);
             newClient.SaveClient();
             List<Stylist> stylistList = Stylist.GetAllStylists();
             return View("Index", stylistList);

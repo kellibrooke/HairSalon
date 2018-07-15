@@ -11,6 +11,7 @@ namespace HairSalon.Tests
         public void Dispose()
         {
             Client.DeleteAll();
+            Stylist.DeleteAll();
         }
 
         public ClientTest()
@@ -21,15 +22,15 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Equals_ReturnsTrueIfNamessAreTheSame_Client()
         {
-            Client firstClient = new Client("Stacy", 2);
-            Client secondClient = new Client("Stacy", 2);
+            Client firstClient = new Client("Stacy");
+            Client secondClient = new Client("Stacy");
             Assert.AreEqual(firstClient, secondClient);
         }
 
         [TestMethod]
         public void SaveClient_SavesToDatabase_ClientList()
         {
-            Client testClient = new Client("Elliot", 1);
+            Client testClient = new Client("Elliot");
             testClient.SaveClient();
             List<Client> actual = Client.GetAllClients();
             List<Client> expected = new List<Client> {testClient};
@@ -46,10 +47,40 @@ namespace HairSalon.Tests
         [TestMethod]
         public void FindClient_FindsClientInDB_Client()
         {
-            Client testClient = new Client("Jennifer", 1);
+            Client testClient = new Client("Jennifer");
             testClient.SaveClient();
             Client foundClient = Client.FindClient(testClient.GetId());
             Assert.AreEqual(testClient, foundClient);
         }
+
+        [TestMethod]
+        public void AddStylist_AddsStylistToClient_StylistList()
+        {
+            Client testClient = new Client("Jenny");
+            testClient.SaveClient();
+            Stylist testStylist = new Stylist("Stacy");
+            testStylist.SaveStylist();
+            testClient.AddStylist(testStylist);
+            List<Stylist> actual = testClient.GetStylists();
+            List<Stylist> expected = new List<Stylist> {testStylist};
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
+        public void GetStylists_ReturnsAllClientStylists_StylistList()
+        {
+            Client testClient = new Client("John");
+            testClient.SaveClient();
+            Stylist testStylist1 = new Stylist("Stacy");
+            testStylist1.SaveStylist();
+            Stylist testStylist2 = new Stylist("Jordan");
+            testStylist2.SaveStylist();
+            testClient.AddStylist(testStylist1);
+            List<Stylist> actual = testClient.GetStylists();
+            List<Stylist> expected = new List<Stylist> {testStylist1, testStylist2};
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
     }
 }
