@@ -15,6 +15,20 @@ namespace HairSalon.Models
             _name = name;
         }
 
+        public override bool Equals(System.Object otherStylist)
+        {
+            if (!(otherStylist is Stylist))
+            {
+                return false;
+            }
+            else
+            {
+                Stylist newStylist = (Stylist) otherStylist;
+                bool isEqual = (this.GetName() == newStylist.GetName());
+                return (isEqual);
+            }
+        }
+
         public int GetId()
         {
             return _id;
@@ -118,6 +132,20 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return clientList;
+        }
+
+        public static void DeleteAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM stylists;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
     }
 }
