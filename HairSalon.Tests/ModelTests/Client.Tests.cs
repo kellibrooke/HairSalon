@@ -42,5 +42,14 @@ namespace HairSalon.Tests
             int actual = Client.GetAllClients().Count;
             Assert.AreEqual(0, actual);
         }
+
+        [TestMethod]
+        public void FindClient_FindsClientInDB_Client()
+        {
+            Client testClient = new Client("Jennifer", 1);
+            testClient.SaveClient();
+            Client foundClient = Client.FindClient(testClient.GetId());
+            Assert.AreEqual(testClient, foundClient);
+        }
     }
 }
