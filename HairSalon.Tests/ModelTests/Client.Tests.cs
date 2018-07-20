@@ -49,7 +49,7 @@ namespace HairSalon.Tests
         {
             Client testClient = new Client("Jennifer");
             testClient.SaveClient();
-            Client foundClient = Client.FindClient(testClient.GetId());
+            Client foundClient = Client.FindClient(testClient.Id);
             Assert.AreEqual(testClient, foundClient);
         }
 
@@ -61,23 +61,21 @@ namespace HairSalon.Tests
             Stylist testStylist = new Stylist("Stacy");
             testStylist.SaveStylist();
             testClient.AddStylist(testStylist);
-            List<Stylist> actual = testClient.GetStylists();
+            List<Stylist> actual = testClient.GetStylistList();
             List<Stylist> expected = new List<Stylist> {testStylist};
             CollectionAssert.AreEqual(actual, expected);
         }
 
         [TestMethod]
-        public void GetStylists_ReturnsAllClientStylists_StylistList()
+        public void GetStylistList_ReturnsAllClientStylists_StylistList()
         {
             Client testClient = new Client("John");
             testClient.SaveClient();
             Stylist testStylist1 = new Stylist("Stacy");
             testStylist1.SaveStylist();
-            Stylist testStylist2 = new Stylist("Jordan");
-            testStylist2.SaveStylist();
             testClient.AddStylist(testStylist1);
-            List<Stylist> actual = testClient.GetStylists();
-            List<Stylist> expected = new List<Stylist> {testStylist1, testStylist2};
+            List<Stylist> actual = testClient.GetStylistList();
+            List<Stylist> expected = new List<Stylist> {testStylist1};
             CollectionAssert.AreEqual(expected, actual);
         }
 

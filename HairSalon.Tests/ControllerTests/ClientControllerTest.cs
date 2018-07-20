@@ -11,21 +11,21 @@ namespace HairSalon.Tests
     public class ClientControllerTest
     {
       [TestMethod]
-          public void Index_ReturnsCorrectView_True()
+          public void ViewAllClients_ReturnsCorrectView_True()
           {
               ClientController controller = new ClientController();
-              ActionResult indexView = controller.Index();
+              IActionResult indexView = controller.ViewAllClients();
               Assert.IsInstanceOfType(indexView, typeof(ViewResult));
           }
 
       [TestMethod]
-          public void Index_HasCorrectModelType_StylistList()
+          public void ViewAllClients_HasCorrectModelType_ClientList()
           {
               ClientController controller = new ClientController();
-              IActionResult actionResult = controller.Index();
-              ViewResult indexView = controller.Index() as ViewResult;
+              IActionResult actionResult = controller.ViewAllClients();
+              ViewResult indexView = controller.ViewAllClients() as ViewResult;
               var result = indexView.ViewData.Model;
-              Assert.IsInstanceOfType(result, typeof(List<Stylist>));
+              Assert.IsInstanceOfType(result, typeof(List<Client>));
           }
 
           // [TestMethod]
@@ -63,7 +63,7 @@ namespace HairSalon.Tests
           //         var result = indexView.ViewData.Model;
           //         Assert.IsInstanceOfType(result, typeof(List<Client>));
           //     }
-          // 
+          //
           // [TestMethod]
           //     public void ClientInfo_ReturnsCorrectView_True()
           //     {
