@@ -37,7 +37,9 @@
   <div>
     <a href="/stylists/new" class="btn btn-info btn-sm">Create New Stylist</a>
     <br>
-    <a href="/stylists/delete-all" class="btn btn-danger btn-sm">Delete All Stylists</a>
+    <form action="/stylists/deleteall" method="post">
+      <button type="submit" class="btn btn-danger btn-sm">Delete All Stylists</button>
+    </form>
   </div>
 
 

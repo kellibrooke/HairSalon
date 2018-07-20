@@ -93,5 +93,18 @@ namespace HairSalon.Controllers
           selectedStylist.DeleteStylist();
           return RedirectToAction("ViewAllStylists");
       }
+
+      [HttpGet("/stylists/deleteall")]
+      public IActionResult DeleteAllStylists()
+      {
+          return RedirectToAction("ViewAllStylists");
+      }
+
+      [HttpPost("/stylists/deleteall")]
+      public IActionResult AllStylistDelete()
+      {
+          Stylist.DeleteAll();
+          return RedirectToAction("ViewAllStylists");
+      }
     }
 }
