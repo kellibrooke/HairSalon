@@ -3,23 +3,33 @@
 }
 
 <div class='container'>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="well">
-        <h3>Get Existing Client Information</h3>
-        @foreach (var client in Model)
-        {
-            <h3>
-              <a href="/clients/@client.Id" class="btn btn-success">@client.Name</a>
-            </h3>
-        }
+  <h3>Client List</h3>
+    <div class="row">
+      <div class="col-sm-8">
+        <strong>Name</strong>
+      </div>
+      <div class="col-sm-4">
+        <strong>Options</strong>
       </div>
     </div>
-    <div class="col-sm-6">
-      <a href="/stylists/new" class="btn btn-info">Create New Client</a>
-    </div>
-
-    <a href="/">To Home Page</a>
+      @foreach (var client in Model)
+        {
+          <div class="row">
+            <div class="col-sm-8">
+              @client.Name
+            </div>
+            <div class="col-sm-2">
+              <a href="/clients/@client.Id" class="btn btn-info">Client Info</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="/clients/@client.Id/delete" class="btn btn-danger">Delete Client</a>
+            </div>
+          </div>
+        }
+  <div>
+    <a href="/stylists/new" class="btn btn-info">Create New Client</a>
     <br>
-    <a href="/stylists">To Stylist Page</a>
+    <a href="/stylists/delete-all" class="btn btn-danger">Delete All Clients</a>
   </div>
+
+</div>

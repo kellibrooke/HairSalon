@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class='container'>
+  <h3>Our Services</h3>
+      @foreach (var service in Model)
+        {
+          <div class="row">
+            <div class="col-sm-8">
+              @service.Name
+            </div>
+            <div class="col-sm-4">
+              <a href="/services/@service.Id" class="btn btn-info btn-sm">More Information</a>
+            </div>
+          </div>
+        }
+  <div>
+    <a href="/services/new" class="btn btn-info btn-sm">Add New Service</a>
+  </div>
+</div>
