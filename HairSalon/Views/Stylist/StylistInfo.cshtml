@@ -2,12 +2,12 @@
   Layout = "_Layout";
 }
 
-<h1>Details About @Model.GetName()</h1>
-<p>Name: @Model.GetName()</p>
+<h1>Details About @Model.Name</h1>
+<p>Name: @Model.Name</p>
 <p>Clients: </p>
 @foreach (var client in Model.GetClientList())
 {
-    <li>@client.GetName()</li>
+    <li>@client.Name</li>
 }
 
 <a href="/stylists">Back to Stylist Page</a>

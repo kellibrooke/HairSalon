@@ -8,26 +8,30 @@ namespace HairSalon.Controllers
     public class StylistController : Controller
     {
       [HttpGet("/stylists")]
-      public ActionResult Index()
+      public IActionResult ViewAllStylists()
       {
           List<Stylist> allStylists = Stylist.GetAllStylists();
           return View(allStylists);
       }
-      [HttpPost("/stylists")]
-      public ActionResult CreateStylist()
+
+      [HttpGet("/stylists/new")]
+      public IActionResult CreateStylistForm()
       {
-          string stylistName = Request.Form["stylist-name"];
-          Stylist newStylist = new Stylist(stylistName);
-          newStylist.SaveStylist();
-          List<Stylist> allStylists = Stylist.GetAllStylists();
-          return View("Index", allStylists);
+          return View();
       }
 
-      [HttpPost("/stylist-info")]
-      public ActionResult StylistInfo()
+      [HttpPost("/stylists/new")]
+      public IActionResult CreateStylist(string stylistName)
       {
-          int stylistId = int.Parse(Request.Form["stylist-info-select"]);
-          Stylist selectedStylist = Stylist.FindStylist(stylistId);
+          Stylist newStylist = new Stylist(stylistName);
+          newStylist.SaveStylist();
+          return RedirectToAction("ViewAllStylists");
+      }
+
+      [HttpGet("/stylists/{id}")]
+      public ActionResult StylistInfo(int id)
+      {
+          Stylist selectedStylist = Stylist.FindStylist(id);
           return View(selectedStylist);
       }
     }

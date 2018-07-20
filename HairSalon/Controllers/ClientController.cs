@@ -7,40 +7,43 @@ namespace HairSalon.Controllers
     public class ClientController : Controller
     {
         [HttpGet("/clients")]
-        public ActionResult Index()
+        public IActionResult ViewAllClients()
         {
-            List<Stylist> stylistList = Stylist.GetAllStylists();
-            return View(stylistList);
+            List<Client> clientList = Client.GetAllClients();
+            return View(clientList);
         }
 
-        [HttpPost("/clients")]
-        public ActionResult CreateClient()
+        [HttpGet("/clients/new")]
+        public IActionResult CreateClientForm()
         {
-            string clientName = Request.Form["client-name"];
-            int clientStylistId = int.Parse(Request.Form["stylist-assign-select"]);
+            return View();
+
+        }
+
+        [HttpPost("/clients/new")]
+        public IActionResult CreateClient(string clientName)
+        {
             Client newClient = new Client(clientName);
             newClient.SaveClient();
-            List<Stylist> stylistList = Stylist.GetAllStylists();
-            return View("Index", stylistList);
-
+            return RedirectToAction("ViewAllClients");
         }
 
-        [HttpPost("/select-client")]
-        public ActionResult SelectClient()
+        [HttpGet("/clients/{id}")]
+        public IActionResult ClientInfo(int id)
         {
-            int stylistId = int.Parse(Request.Form["stylist-info-select"]);
-            Stylist selectedStylist = Stylist.FindStylist(stylistId);
-            List<Client> selectedClientList = selectedStylist.GetClientList();
-            return View(selectedClientList);
-
-        }
-
-        [HttpPost("/client-info")]
-        public ActionResult ClientInfo()
-        {
-            int clientId = int.Parse(Request.Form["stylist-select"]);
-            Client selectedClient = Client.FindClient(clientId);
+            Client selectedClient = Client.FindClient(id);
             return View(selectedClient);
         }
+
+        [HttpPost("/clients/{id}")]
+        public IActionResult AddStylist(int id, int addedStylistId)
+        {
+            Client selectedClient = Client.FindClient(id);
+            Stylist selectedStylist = Stylist.FindStylist(addedStylistId);
+            selectedClient.AddStylist(selectedStylist);
+            return RedirectToAction("ClientInfo");
+        }
+
+
     }
 }

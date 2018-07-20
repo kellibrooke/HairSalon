@@ -3,8 +3,26 @@
 }
 
 <div class="well">
-  <h3>@Model.GetName()</h3>
-  <p>Name: @Model.GetName()</p>
+  <h3>@Model.Name</h3>
+  <p>Current Stylists</p>
+    <ul>
+    @foreach (var stylist in Model.GetStylists())
+    {
+        <li>@stylist.Name</li>
+    }
+    </ul>
+  <form action="/clients/@Model.Id" method="post">
+    <div class="form-group">
+      <label for="addedStylistId">Add A Stylist</label>
+      <select name="addedStylistId" class="form-control">
+        @foreach (var stylist in Model.GetAllStylists())
+        {
+            <option value="@stylist.Id">@stylist.Name</option>
+        }
+      </select>
+    </div>
+    <button type="submit">Add</button>
+  </form>
 </div>
 
 <a href="/clients">Back to Clients Page</a>

@@ -4,14 +4,14 @@
 
 <div class="well">
   <h3>Get Existing Client Information</h3>
-  <form action="/client-info" method="post">
+  <form action="/clients/@Model" method="post">
     <div class="form-group">
-      <label for="stylist-select">Select A Client</label>
-      <select class="form-control form-control-sm" name="stylist-select">
+      <label for="stylistSelect">Select A Client</label>
+      <select class="form-control form-control-sm" name="stylistSelect">
         @foreach (var client in Model)
         {
-            <option value = "@client.GetId()">
-              @client.GetName()
+            <option value = "@client.Id">
+              @client.Name
             </option>
         }
       </select>

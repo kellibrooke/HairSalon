@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+  <div class="well">
+    <h3>Add A New Client</h3>
+    <form action="/clients/new" method="post">
+      <div class="form-group">
+        <label for="clientName">Client Name</label>
+        <input type="text" class="form-control" id="clientName" name="clientName">
+      </div>
+      <button class="btn btn-info" type="submit">Add Client</button>
+    </form>
+  </div>
+</div>
