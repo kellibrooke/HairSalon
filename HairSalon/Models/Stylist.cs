@@ -67,6 +67,59 @@ namespace HairSalon.Models
           }
         }
 
+        public void AddService(Service newService)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"INSERT INTO services_stylists (service_id, stylist_id) VALUES (@ServiceId, @StylistId)";
+          cmd.Parameters.AddWithValue("@ServiceId", newService.Id);
+          cmd.Parameters.AddWithValue("@StylistId", this.Id);
+          cmd.ExecuteNonQuery();
+          conn.Close();
+          if(conn != null)
+          {
+              conn.Dispose();
+          }
+        }
+
+        public void EditStylist(string newName)
+                {
+                    MySqlConnection conn = DB.Connection();
+                    conn.Open();
+
+                    var cmd = conn.CreateCommand() as MySqlCommand;
+                    cmd.CommandText = @"UPDATE stylists SET name = @Name WHERE id = @searchId;";
+
+
+                    cmd.Parameters.AddWithValue("@Name", newName);
+                    cmd.Parameters.AddWithValue("@searchId", this.Id);
+
+                    cmd.ExecuteNonQuery();
+                    this.Name = newName;
+
+                    conn.Close();
+                    if (conn != null)
+                    {
+                        conn.Dispose();
+                    }
+                }
+        public void DeleteStylist()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM stylists WHERE id = @StylistId; DELETE FROM services_stylists WHERE stylist_id = @StylistId; DELETE FROM clients_stylists WHERE stylist_id = @StylistId";
+
+            cmd.Parameters.AddWithValue("@StylistId", this.Id);
+
+            cmd.ExecuteNonQuery();
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         public static Stylist FindStylist(int idToFind)
         {
             MySqlConnection conn = DB.Connection();
@@ -138,6 +191,42 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return clientList;
+        }
+
+        public List<Service> GetServiceList()
+        {
+            List<Service> serviceList = new List<Service> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT services.* FROM stylists
+                              JOIN services_stylists ON (stylists.id = services_stylists.stylist_id)
+                              JOIN services ON (services_stylists.service_id = services.id) WHERE stylist_id = @StylistId;";
+            cmd.Parameters.AddWithValue("@StylistId", this.Id);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                Service newService = new Service(name, id);
+                serviceList.Add(newService);
+            }
+            conn.Close();
+            if(conn != null)
+            {
+                conn.Dispose();
+            }
+            return serviceList;
+        }
+
+        public List<Client> GetAllClients()
+        {
+            return Client.GetAllClients();
+        }
+
+        public List<Service> GetAllServices()
+        {
+            return Service.GetAllServices();
         }
 
         public static void DeleteAll()

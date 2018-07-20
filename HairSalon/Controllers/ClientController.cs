@@ -35,15 +35,35 @@ namespace HairSalon.Controllers
             return View(selectedClient);
         }
 
-        [HttpPost("/clients/{id}")]
-        public IActionResult AddStylist(int id, int addedStylistId)
+        [HttpGet("/clients/{id}/addstylist")]
+        public IActionResult AddNewStylist()
         {
-            Client selectedClient = Client.FindClient(id);
-            Stylist selectedStylist = Stylist.FindStylist(addedStylistId);
-            selectedClient.AddStylist(selectedStylist);
-            return RedirectToAction("ClientInfo");
+            return View("ClientInfo");
         }
 
+        [HttpPost("/clients/{id}/addstylist")]
+        public IActionResult AddNewStylist(int id, int addedStylistId)
+        {
+          Client selectedClient = Client.FindClient(id);
+          Stylist selectedStylist = Stylist.FindStylist(addedStylistId);
+          selectedClient.AddStylist(selectedStylist);
+          return RedirectToAction("ClientInfo");
+        }
+
+        [HttpGet("/clients/{id}/edit")]
+        public IActionResult EditClient(int id)
+        {
+            Client selectedClient = Client.FindClient(id);
+            return View(selectedClient);
+        }
+
+        [HttpPost("/clients/{id}/edit")]
+        public IActionResult EditThisClient(int id, string newName)
+        {
+            Client selectedClient = Client.FindClient(id);
+            selectedClient.EditClient(newName);
+            return RedirectToAction("ClientInfo");
+        }
 
     }
 }

@@ -109,7 +109,7 @@ namespace HairSalon.Models
           }
       }
 
-      public List<Stylist> GetStylists()
+      public List<Stylist> GetStylistList()
       {
         MySqlConnection conn = DB.Connection();
           conn.Open();
