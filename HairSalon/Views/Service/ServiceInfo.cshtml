@@ -3,20 +3,25 @@
 }
 <div class="container">
   <h1>@Model.Name</h1>
-  <h3>Stylists Offering This Service</h3>
-  @foreach (var stylist in Model.GetStylistList())
-  {
-      <li>@stylist.Name</li>
-  }
-
-  <h4>Add A Stylist Offering This Service</h4>
-  <form action="/services/@Model.Id" method="post">
-    <select name="addedStylistId" class="form-control form-control-sm">
-        @foreach (var stylist in Model.GetAllStylists())
-        {
-            <option value="@stylist.Id">@stylist.Name</option>
-        }
-    </select>
-    <button type="submit" class="btn btn-info">Add Stylist</button>
-  </form>
+  <div class="row">
+    <div class="col-sm-6 row-decor">
+      <h3>Stylists Offering This Service</h3>
+      @foreach (var stylist in Model.GetStylistList())
+      {
+          <li>@stylist.Name</li>
+      }
+    </div>
+    <div class="col-sm-6 row-decor">
+      <h3>Add A Stylist Offering This Service</h3>
+      <form action="/services/@Model.Id" method="post">
+        <select name="addedStylistId" class="form-control form-control-sm">
+            @foreach (var stylist in Model.GetAllStylists())
+            {
+                <option value="@stylist.Id">@stylist.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-info btn-sm">Add Stylist</button>
+      </form>
+    </div>
+  </div>
 </div>

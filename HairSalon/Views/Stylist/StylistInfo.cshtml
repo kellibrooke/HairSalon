@@ -2,47 +2,61 @@
   Layout = "_Layout";
 }
 <div class="container">
-  <h1>@Model.Name</h1>
-  <h3>Clients</h3>
-  <ul>
-    @foreach (var client in Model.GetClientList())
-    {
-        <li>@client.Name</li>
-    }
-  </ul>
-
-  <h3>Services Offered</h3>
-  <ul>
-    @foreach (var service in Model.GetServiceList())
-    {
-        <li>@service.Name</li>
-    }
-  </ul>
-
-  <h4>Add A Client</h4>
-  <form action="/stylists/@Model.Id/addclient" method="post">
-    <select name="addedClientId" class="form-control form-control-sm">
-        @foreach (var client in Model.GetAllClients())
+  <h1>Stylist Details for @Model.Name</h1>
+  <div class="row">
+    <div class="col-sm-6 row-decor">
+      <h3>Clients</h3>
+      <ul>
+        @foreach (var client in Model.GetClientList())
         {
-            <option value="@client.Id">@client.Name</option>
+            <li>@client.Name</li>
         }
-    </select>
-    <button type="submit" class="btn btn-info">Add Client</button>
-  </form>
-
-  <h4>Add A Service</h4>
-  <form action="/stylists/@Model.Id/addservice" method="post">
-    <select name="addedServiceId" class="form-control form-control-sm">
-        @foreach (var service in Model.GetAllServices())
+      </ul>
+    </div>
+    <div class="col-sm-6 row-decor">
+      <h3>Add A Client</h3>
+      <form action="/stylists/@Model.Id/addclient" method="post">
+        <select name="addedClientId" class="form-control form-control-sm">
+            @foreach (var client in Model.GetAllClients())
+            {
+                <option value="@client.Id">@client.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-info btn-sm">Add Client</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 row-decor">
+      <h3>Services Offered</h3>
+      <ul>
+        @foreach (var service in Model.GetServiceList())
         {
-            <option value="@service.Id">@service.Name</option>
+            <li>@service.Name</li>
         }
-    </select>
-    <button type="submit" class="btn btn-info">Add Service</button>
-  </form>
-  <a href="/stylists/@Model.Id/edit" class="btn btn-info">Edit @Model.Name</a>
-  <br>
-  <form action="/stylists/@Model.Id/delete" method="post">
-    <button type="submit" class="btn btn-danger">Delete @Model.Name</button>
-  </form>
+      </ul>
+    </div>
+    <div class="col-sm-6 row-decor">
+      <h3>Add A Service</h3>
+      <form action="/stylists/@Model.Id/addservice" method="post">
+        <select name="addedServiceId" class="form-control form-control-sm">
+            @foreach (var service in Model.GetAllServices())
+            {
+                <option value="@service.Id">@service.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-info btn-sm">Add Service</button>
+      </form>
+    </div>
+  </div>
+  <div class="row bottom-buttons">
+    <div class="col-sm-2">
+      <a href="/stylists/@Model.Id/edit" class="btn btn-info btn-sm">Edit @Model.Name</a>
+    </div>
+    <div class="col-sm-2">
+      <form action="/stylists/@Model.Id/delete" method="post">
+        <button type="submit" class="btn btn-danger btn-sm">Delete @Model.Name</button>
+      </form>
+    </div>
+  </div>
 </div>

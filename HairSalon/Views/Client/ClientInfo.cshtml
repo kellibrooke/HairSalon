@@ -3,28 +3,37 @@
 }
 <div class="container">
   <h1>@Model.Name</h1>
-  <h3>Stylists</h3>
-  <ul>
-    @foreach (var stylist in Model.GetStylistList())
-    {
-        <li>@stylist.Name</li>
-    }
-  </ul>
-
-  <h4>Add A Stylist</h4>
-  <form action="/clients/@Model.Id/addstylist" method="post">
-    <select name="addedStylistId" class="form-control form-control-sm">
-        @foreach (var stylist in Model.GetAllStylists())
+  <div class="row">
+    <div class="col-sm-6 row-decor">
+      <h3>Stylists</h3>
+      <ul>
+        @foreach (var stylist in Model.GetStylistList())
         {
-            <option value="@stylist.Id">@stylist.Name</option>
+            <li>@stylist.Name</li>
         }
-    </select>
-    <button type="submit" class="btn btn-info">Add Stylist</button>
-  </form>
-
-  <a href="/clients/@Model.Id/edit" class="btn btn-info">Edit @Model.Name</a>
-  <br>
-  <form action="/clients/@Model.Id/delete" method="post">
-    <button type="submit" class="btn btn-danger">Delete @Model.Name</button>
-  </form>
+      </ul>
+    </div>
+    <div class="col-sm-6 row-decor">
+      <h3>Add A Stylist</h3>
+      <form action="/clients/@Model.Id/addstylist" method="post">
+        <select name="addedStylistId" class="form-control form-control-sm">
+            @foreach (var stylist in Model.GetAllStylists())
+            {
+                <option value="@stylist.Id">@stylist.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-info btn-sm">Add Stylist</button>
+      </form>
+    </div>
+  </div>
+  <div class="row bottom-buttons">
+    <div class="col-sm-2">
+      <a href="/clients/@Model.Id/edit" class="btn btn-info btn-sm">Edit @Model.Name</a>
+    </div>
+    <div class="col-sm-2">
+      <form action="/clients/@Model.Id/delete" method="post">
+        <button type="submit" class="btn btn-danger btn-sm">Delete @Model.Name</button>
+      </form>
+    </div>
+  </div>
 </div>

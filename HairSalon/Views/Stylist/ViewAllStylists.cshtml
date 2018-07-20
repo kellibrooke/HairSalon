@@ -3,7 +3,7 @@
 }
 
 <div class='container'>
-  <h3>Our Stylists</h3>
+  <h1>Our Stylists</h1>
   <div class="row">
     <div class="col-sm-3">
       <strong>Name</strong>
@@ -15,14 +15,20 @@
       <strong>Options</strong>
     </div>
   </div>
-  <div class="row">
+
       @foreach (var stylist in Model)
       {
+        <div class="row row-decor">
           <div class="col-sm-3">
             @stylist.Name
           </div>
           <div class="col-sm-5">
-            Service List
+            <div class="row">
+              @foreach (var service in @stylist.GetServiceList())
+              {
+                  <div class="col">@service.Name</div>
+              }
+            </div>
           </div>
           <div class="col-sm-2">
             <a href="/stylists/@stylist.Id" class="btn btn-info btn-sm">Stylist Info</a>
@@ -32,14 +38,18 @@
               <button type="submit" class="btn btn-danger btn-sm">Delete Stylist</button>
             </form>
           </div>
+        </div>
       }
-  </div>
-  <div>
-    <a href="/stylists/new" class="btn btn-info btn-sm">Create New Stylist</a>
-    <br>
-    <form action="/stylists/deleteall" method="post">
-      <button type="submit" class="btn btn-danger btn-sm">Delete All Stylists</button>
-    </form>
+
+    <div class="bottom-buttons row">
+      <div class="col-sm-2">
+        <a href="/stylists/new" class="btn btn-info btn-sm">Create New Stylist</a>
+      </div>
+      <div class="col-sm-2">
+        <form action="/stylists/deleteall" method="post">
+          <button type="submit" class="btn btn-danger btn-sm">Delete All Stylists</button>
+        </form>
+      </div>
   </div>
 
 
