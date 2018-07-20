@@ -84,26 +84,27 @@ namespace HairSalon.Models
         }
 
         public void EditStylist(string newName)
-                {
-                    MySqlConnection conn = DB.Connection();
-                    conn.Open();
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
 
-                    var cmd = conn.CreateCommand() as MySqlCommand;
-                    cmd.CommandText = @"UPDATE stylists SET name = @Name WHERE id = @searchId;";
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = @Name WHERE id = @searchId;";
 
 
-                    cmd.Parameters.AddWithValue("@Name", newName);
-                    cmd.Parameters.AddWithValue("@searchId", this.Id);
+            cmd.Parameters.AddWithValue("@Name", newName);
+            cmd.Parameters.AddWithValue("@searchId", this.Id);
 
-                    cmd.ExecuteNonQuery();
-                    this.Name = newName;
+            cmd.ExecuteNonQuery();
+            this.Name = newName;
 
-                    conn.Close();
-                    if (conn != null)
-                    {
-                        conn.Dispose();
-                    }
-                }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        
         public void DeleteStylist()
         {
             MySqlConnection conn = DB.Connection();
