@@ -1,24 +1,32 @@
 # Hair Salon App
 
-#### Epicodus C# exercise, July 13, 2018
+#### Epicodus C# exercise, July 20, 2018
 
 #### By Kelli McCloskey
 
 ## Description
 
-This is our third code review for the C# segment of Epicodus. This is an app meant to be used by hair salon employees to view the list of stylists that work at the salon, see details about each stylist including their list of clients, and to add clients to a particular stylist's client list.
+This is our fourth code review for the C# segment of Epicodus. This is an app meant to be used by hair salon employees to fulfill a number of user stories.
 
-## Specs
+Instructions are as follows...
 
-| Behavior | Input | Output |
-|----------|-------|--------|
-| Behavior | input | output |
+* As an employee, I need to be able to delete stylists (all and single).
+* As an employee, I need to be able to delete clients (all and single).
+* As an employee, I need to be able to view clients (all and single).
+* As an employee, I need to be able to edit JUST the name of a stylist.
+* As an employee, I need to be able to edit ALL of the information for a client.
+* As an employee, I need to be able to add a specialty and view all specialties that have been added.
+* As an employee, I need to be able to add a specialty to a stylist.
+* As an employee, I need to be able to click on a specialty and see all of the stylists that have that specialty.
+* As an employee, I need to see the stylist's specialties on the stylist's details page.
+* As an employee, I need to be able to add a stylist to a specialty.
 
 ## Setup on OSX
 
 * Download and install .Net Core 1.1.4
 * Download and install Mono
 * Clone the repo
+* Download the database and import into phpMyAdmin.
 * Run `dotnet restore` from project directory and test directory to install packages
 * Run `dotnet build` from project directory and fix any build errors
 * Run `dotnet test` from the test directory to run the testing suite
